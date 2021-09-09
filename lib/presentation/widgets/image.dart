@@ -1,15 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:weather_app/blocs/weather_cubit.dart';
 import 'package:weather_app/data/models/weather.dart';
 
 
 class BuildImage extends StatelessWidget {
-
-  const BuildImage({
-    Key key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -3,11 +3,7 @@ import 'package:flutter/material.dart';
 
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  const CustomAppBar({
-    Key key,
-  }) : super(key: key);
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -32,4 +28,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       ],
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

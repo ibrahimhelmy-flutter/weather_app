@@ -8,6 +8,7 @@ import 'package:weather_app/presentation/widgets/appbar.dart';
 import 'package:weather_app/presentation/widgets/countrywather.dart';
 import 'package:weather_app/presentation/widgets/fiveDay_weather.dart';
 import 'package:weather_app/presentation/widgets/image.dart';
+import 'package:weather_app/presentation/widgets/loading_screen.dart';
 import 'package:weather_app/presentation/widgets/todayWatherDetails.dart';
 
 
@@ -23,12 +24,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return BlocConsumer<WeatherCubit, WeatherState>(
       listener: (context, state) {
-        // TODO: implement listener
       },
       builder: (context, state) {
-        // WeatherModel model= WeatherCubit.get(context).locationWeather;
-        // String iconCode=model.list.first.weather.first.icon.toString();
         if(state is WeatherSuccessState){
+
           return Scaffold(
             appBar: CustomAppBar(),
             backgroundColor: Colors.white,
@@ -47,8 +46,6 @@ class _HomeState extends State<Home> {
         }else{
           return LoadingScreen();
         }
-
-
       },
     );
   }
@@ -56,13 +53,3 @@ class _HomeState extends State<Home> {
 
 }
 
-class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: CircularProgressIndicator()));
-  }
-}

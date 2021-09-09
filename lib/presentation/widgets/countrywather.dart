@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:weather_app/blocs/weather_cubit.dart';
 import 'package:weather_app/data/models/weather.dart';
 
 
 class CountryWeather extends StatelessWidget {
-  const CountryWeather({
-    Key key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +23,7 @@ class CountryWeather extends StatelessWidget {
               Text(
                 model.list.first.main.temp.ceil().toString(),
                 style: TextStyle(
-                  color: Colors.black38,
+                  color: Colors.black87,
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                 ),
@@ -35,7 +31,7 @@ class CountryWeather extends StatelessWidget {
               Text(
                 'C',
                 style: TextStyle(
-                  color: Colors.black38,
+                  color: Colors.black87,
                   fontSize: 10,
                 ),
               ),
@@ -44,14 +40,14 @@ class CountryWeather extends StatelessWidget {
           Text(
             model.city.name,
             style: TextStyle(
-              color: Colors.black45,
+              color: Colors.black87,
               fontSize: 17,
             ),
           ),
           Text(
           model.list.first.weather.first.description,
             style: TextStyle(
-              color: Colors.black45,
+              color: Colors.black87,
               fontSize: 17,
             ),
           ),

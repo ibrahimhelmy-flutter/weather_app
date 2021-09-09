@@ -1,73 +1,121 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:intl/intl.dart';
+import 'package:weather_app/blocs/weather_cubit.dart';
+import 'package:weather_app/data/models/weather.dart';
 
 class FiveDayWeather extends StatelessWidget {
-  const FiveDayWeather({
-    Key key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
-      scrollDirection: Axis.horizontal,
-      child: Padding(
+    WeatherCubit cubit= WeatherCubit.get(context);
+    WeatherModel model= cubit.locationWeather;
+    return Container(
+      height: 220,
         padding: const EdgeInsets.symmetric(vertical: 18),
-        child: Row(
-          children: <Widget>[
-            for (var i = 0; i <5; i++)
-              forecastElement(i + 1, "12", "13", "66"),
-          ],
-        ),
-      ),
-    );
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
+            itemCount: model.list.length,
+            itemBuilder: (c, i) {
+              return forecastElement( model.list[i].main.tempMin.ceil().toString(),model.list[i].main.tempMax.ceil().toString(),WeatherCubit.get(context).getWeatherIcon(model.list[i].weather.first.id),model.list[i].dt);
+            })
+
+
+        );
   }
 }
 
+
+var oldDay;
+bool isNewDay=true;
 Widget forecastElement(
-    daysFromNow, abbreviation, minTemperature, maxTemperature) {
-  var now = new DateTime.now();
-  var oneDayFromNow = now.add(new Duration(days: daysFromNow));
-  return Padding(
+      minTemperature, maxTemperature, weatherIcon,dt) {
+var textDay;
+
+final now = DateTime.now();
+ var date = DateTime.fromMillisecondsSinceEpoch(dt * 1000);
+
+ if(oldDay !=null && oldDay!=date.day){
+   oldDay=date.day;
+   isNewDay=!isNewDay;
+   // return Container(color: Colors.red,width: 10,);
+ }else{
+   oldDay=date.day;
+
+ }
+
+var hour=DateFormat("h a").format(date);
+var  formattedDate = DateFormat('EEE').format(date);
+
+  if(formattedDate == DateFormat('EEE').format(now)) {
+    textDay = "Today";
+  }
+  else if(formattedDate == DateFormat('EEE').format(DateTime(now.year, now.month, now.day + 1))) {
+    textDay = "Tomorrow";
+  }
+  else {
+    textDay = DateFormat('EEE').format(date);
+  }
+
+return Padding(
     padding: const EdgeInsets.only(left: 16.0),
     child: Container(
       decoration: BoxDecoration(
-        color: Color.fromRGBO(205, 212, 228, 0.2),
+        color: isNewDay?Color.fromRGBO(205, 212, 228, 0.2):Colors.grey.withOpacity(0.3),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Text(
-              new DateFormat.E().format(oneDayFromNow),
-              style: TextStyle(color: Colors.black, fontSize: 25),
+              hour.toString(),
+              style: TextStyle(color: Colors.black54, fontSize: 17),
             ),
             Text(
-              new DateFormat.MMMd().format(oneDayFromNow),
-              style: TextStyle(color: Colors.black, fontSize: 20),
+              textDay,
+              style: TextStyle(color: Colors.black87,fontSize: 18),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-              child: Image.asset(
-                "assets/images/sun5.png",
-                width: 50,
+            Container(
+              padding: EdgeInsets.all(2),
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.9),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child:       Center(
+                child: Text(
+                  weatherIcon,
+                  style: TextStyle(fontSize:30),
+                ),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-
                 Text(
-                  minTemperature.toString()+"°" ,
-                  style: TextStyle(color: Colors.black, fontSize: 20.0),
+                  minTemperature.toString() + "°",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    // fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
-                SizedBox(width: 10,),
+                SizedBox(
+                  width: 10,
+                ),
                 Text(
-                  maxTemperature.toString() +"°" ,
-                  style: TextStyle(color: Colors.black, fontSize: 20.0),
+                  maxTemperature.toString() + "°",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    // fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
                 ),
-
               ],
             ),
           ],

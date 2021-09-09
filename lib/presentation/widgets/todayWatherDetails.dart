@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/blocs/weather_cubit.dart';
+import 'package:weather_app/data/models/weather.dart';
 
 
 class TodayWeatherDetails extends StatelessWidget {
-  const TodayWeatherDetails({
-    Key key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    WeatherCubit cubit= WeatherCubit.get(context);
+    WeatherModel model= cubit.locationWeather;
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 130,
@@ -26,13 +27,26 @@ class TodayWeatherDetails extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    '78',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        model.list.first.wind.speed.toString(),
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      Text(
+                        'km/H',
+                        style: TextStyle(
+                          color: Colors.blue,
+
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
                   ),
                   Image.asset(
                     'assets/images/sun2.png',
@@ -40,7 +54,7 @@ class TodayWeatherDetails extends StatelessWidget {
                     height: 50,
                   ),
                   Text(
-                    'Wind Flow',
+                    'Wind Speed',
                     style: TextStyle(
                       color: Colors.grey,
                       fontWeight: FontWeight.normal,
@@ -65,21 +79,32 @@ class TodayWeatherDetails extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    '52',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        model.list.first.main.tempMin.ceil().toString()+"°",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),    SizedBox(width: 12,),    Text(
+                        model.list.first.main.tempMax.ceil().toString()+"°",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
-                  Image.asset(
-                    'assets/images/sun4.png',
-                    width: 50,
-                    height: 50,
+                  Text(
+                    WeatherCubit.get(context).getWeatherIcon(model.list.first.weather.first.id),
+                    style: TextStyle(fontSize:45),
                   ),
                   Text(
-                    'Preception',
+                    'Weather',
                     style: TextStyle(
                       color: Colors.grey,
                       fontWeight: FontWeight.normal,
@@ -105,7 +130,7 @@ class TodayWeatherDetails extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    '89',
+                    model.list.first.main.humidity.toString()+"%",
                     style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,
