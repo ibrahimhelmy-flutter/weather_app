@@ -4,16 +4,19 @@ import 'package:weather_app/data/models/weather.dart';
 
 
 class CountryWeather extends StatelessWidget {
+  final WeatherModel model;
+  CountryWeather({required this.model});
+
 
   @override
   Widget build(BuildContext context) {
-   WeatherModel? model= WeatherCubit.get(context).locationWeather;
+
     return Container(
       margin: EdgeInsets.only(
         top: 5,
         bottom: 8,
       ),
-      width: MediaQuery.of(context).size.width,
+
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -21,7 +24,7 @@ class CountryWeather extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                model!.list!.first.main!.temp.ceil().toString(),
+                model.list!.first.main!.temp.ceil().toString(),
                 style: TextStyle(
                   color: Colors.black87,
                   fontSize: 35,

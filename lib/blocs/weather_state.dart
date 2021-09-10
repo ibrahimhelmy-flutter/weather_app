@@ -13,3 +13,7 @@ class WeatherErrorState extends WeatherState {}
 class WeatherSearchLoadingState extends WeatherState {}
 class WeatherSearchSuccessState extends WeatherState {}
 class WeatherSearchErrorState extends WeatherState {}
+
+
+
+class LocationDisableState extends WeatherState {}

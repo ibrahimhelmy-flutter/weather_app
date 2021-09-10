@@ -1,9 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
 import 'package:weather_app/data/models/weather.dart';
-import 'package:weather_app/data/network_services/weather_provider.dart';
+import 'package:weather_app/data/network_services/weather_service.dart';
+import 'package:weather_app/utils/component.dart';
 
 part 'weather_state.dart';
 
@@ -12,69 +14,46 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   static WeatherCubit get(context) => BlocProvider.of(context);
 
-  WeatherModel ?locationWeather;
-  Future<void> handleLocationData() async {
+  WeatherModel? locationWeather;
+
+  Future<void> getWeatherLocationData() async {
     emit(WeatherLoadingState());
-    Position position = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    ).catchError((e) {
-      print(e.message);
-    });
 
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+                desiredAccuracy: LocationAccuracy.high);
+      locationWeather =
+      await WeatherService.fetchWeatherOnLocation(position: position);
+      emit(WeatherSuccessState());
 
-    WeatherModel? weatherModel =
-        await WeatherProvider.FetchRawWeatherResponseOnLocation(
-      position: position,
-    );
-    locationWeather = weatherModel!;
-    emit(WeatherSuccessState());
-    //return response;
+    } catch (e) {
+      emit(LocationDisableState());
+      print(e);
+    }
+
   }
 
+  List<WeatherModel?>? listOfWeatherSearch = [];
 
-  List<WeatherModel?> ?listOfWeatherSearch=[];
-  Future<List<Future<WeatherModel>>?> getWeatherData({required String cityNames})async {
-    listOfWeatherSearch=[];
+  Future<void> getWeatherSearchData({required String cityNames}) async {
+    listOfWeatherSearch = [];
     emit(WeatherSearchLoadingState());
-    final splitNames = cityNames.split(',');
-    List<String> splitList = [];
-    for (int i = 0; i < splitNames.length; i++) {
-      splitList.add(splitNames[i]);
-    }
+    List<String> splitList = splitInputByComma(cityNames);
+    List<Future<WeatherModel?>> listOfFutureWeather =
+        splitList.map((name) => this._handleOneSearchCity(name)).toList();
 
-    List<Future<WeatherModel?>> lll= splitList.map((name) => this._handleSearchData(name)).toList();
-    lll.map((weather) async=>
-    await weather!=null? listOfWeatherSearch!.add(await weather):null).toList();
-print(listOfWeatherSearch);
-
+    listOfFutureWeather
+        .map((item) async =>
+            await item != null ? listOfWeatherSearch!.add(await item) : null)
+        .toList();
   }
 
-  Future<WeatherModel?> _handleSearchData(String cityName) async {
-
+  Future<WeatherModel?> _handleOneSearchCity(String cityName) async {
     WeatherModel? response =
-        await WeatherProvider.FetchRawWeatherResponseOnCity(cityName: cityName);
+        await WeatherService.fetchWeatherOnCity(cityName: cityName);
     emit(WeatherSearchSuccessState());
-      return response;
-
+    return response;
   }
 
-  String getWeatherIcon(int condition) {
-    if (condition < 300) {
-      return '🌩';
-    } else if (condition < 400) {
-      return '🌧';
-    } else if (condition < 600) {
-      return '☔️';
-    } else if (condition < 700) {
-      return '☃️';
-    } else if (condition < 800) {
-      return '🌫';
-    } else if (condition == 800) {
-      return '☀️';
-    } else if (condition <= 804) {
-      return '☁️';
-    } else {
-      return '🤷‍';
-    }
-  }
+
 }

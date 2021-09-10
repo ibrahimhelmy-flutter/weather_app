@@ -4,6 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/blocs/weather_cubit.dart';
 import 'package:weather_app/data/models/weather.dart';
+import 'package:weather_app/utils/component.dart';
 
 class FiveDayWeather extends StatelessWidget {
 
@@ -19,7 +20,7 @@ class FiveDayWeather extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             itemCount: model!.list!.length,
             itemBuilder: (c, i) {
-              return forecastElement( model.list![i].main!.tempMin.ceil().toString(),model.list![i].main!.tempMax.ceil().toString(),WeatherCubit.get(context).getWeatherIcon(model.list![i].weather!.first.id!),model.list![i].dt);
+              return forecastElement( model.list![i].main!.tempMin.ceil().toString(),model.list![i].main!.tempMax.ceil().toString(),getWeatherIcon(model.list![i].weather!.first.id!),model.list![i].dt);
             })
 
 
