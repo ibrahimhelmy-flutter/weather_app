@@ -10,3 +10,7 @@ class LoadingScreen extends StatelessWidget {
     return Scaffold(body: Center(child: CircularProgressIndicator()));
   }
 }
+
+// valueColor: AlwaysStoppedAnimation<Color>(
+// Colors.white,
+// ),

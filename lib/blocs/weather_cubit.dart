@@ -13,7 +13,6 @@ class WeatherCubit extends Cubit<WeatherState> {
   static WeatherCubit get(context) => BlocProvider.of(context);
 
   WeatherModel locationWeather;
-
   Future<void> handleLocationData() async {
     emit(WeatherLoadingState());
     Position position = await Geolocator.getCurrentPosition(
@@ -32,22 +31,31 @@ class WeatherCubit extends Cubit<WeatherState> {
     //return response;
   }
 
-  List<Future<WeatherModel>> getWeatherData({String cityNames}) {
-    emit(WeatherLoadingState());
+
+
+  List<WeatherModel> listOfWeatherSearch=[];
+  Future<List<Future<WeatherModel>>> getWeatherData({String cityNames})async {
+    listOfWeatherSearch=[];
+    emit(WeatherSearchLoadingState());
     final splitNames = cityNames.split(',');
     List<String> splitList = [];
     for (int i = 0; i < splitNames.length; i++) {
       splitList.add(splitNames[i]);
     }
 
-    return splitList.map((name) => this._handleSearchData(name)).toList();
+    List<Future<WeatherModel>> lll= splitList.map((name) => this._handleSearchData(name)).toList();
+    lll.map((weather) async=>
+    await weather!=null? listOfWeatherSearch.add(await weather):null).toList();
+print(listOfWeatherSearch);
   }
 
   Future<WeatherModel> _handleSearchData(String cityName) async {
-    print("Hello5");
+
     WeatherModel response =
         await WeatherProvider.FetchRawWeatherResponseOnCity(cityName: cityName);
-    return response;
+    emit(WeatherSearchSuccessState());
+      return response;
+
   }
 
   String getWeatherIcon(int condition) {

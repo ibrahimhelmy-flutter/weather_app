@@ -4,11 +4,12 @@ import 'package:weather_app/data/models/weather.dart';
 
 
 class TodayWeatherDetails extends StatelessWidget {
+  TodayWeatherDetails(this.model);
+final WeatherModel model;
 
   @override
   Widget build(BuildContext context) {
-    WeatherCubit cubit= WeatherCubit.get(context);
-    WeatherModel model= cubit.locationWeather;
+
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 130,

@@ -12,14 +12,11 @@ import 'package:weather_app/presentation/widgets/loading_screen.dart';
 import 'package:weather_app/presentation/widgets/todayWatherDetails.dart';
 
 
-class Home extends StatefulWidget {
-  const Home({Key key}) : super(key: key);
+class LocationScreen extends StatelessWidget {
+  static const String id = "/LocationScreen";
 
-  @override
-  _HomeState createState() => _HomeState();
-}
 
-class _HomeState extends State<Home> {
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<WeatherCubit, WeatherState>(
@@ -27,9 +24,10 @@ class _HomeState extends State<Home> {
       },
       builder: (context, state) {
         if(state is WeatherSuccessState){
-
+          WeatherCubit cubit= WeatherCubit.get(context);
+          WeatherModel model= cubit.locationWeather;
           return Scaffold(
-            appBar: CustomAppBar(),
+            appBar: CustomAppBar(title: "Location Screen",),
             backgroundColor: Colors.white,
             body: SingleChildScrollView(
               physics: BouncingScrollPhysics(),
@@ -37,7 +35,7 @@ class _HomeState extends State<Home> {
                 children: [
                   BuildImage(),
                   CountryWeather(),
-                  TodayWeatherDetails(),
+                  TodayWeatherDetails(model),
                   FiveDayWeather(),
                 ],
               ),
