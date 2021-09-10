@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 
-void buildShowToast({String msg, Color color}) {
+
+void buildShowToast({required String msg, required Color color}) {
   Fluttertoast.showToast(
       msg: msg,
       backgroundColor: color,
@@ -11,7 +13,7 @@ void buildShowToast({String msg, Color color}) {
       toastLength: Toast.LENGTH_SHORT);
 }
 
-String validateSearchField(String value) {
+String? validateSearchField(String value) {
   int count = value.length - value.replaceAll(",","").length;
   print(count);
   if ((count<2 ||count>6) && value.isNotEmpty) {

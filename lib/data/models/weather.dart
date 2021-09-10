@@ -103,11 +103,11 @@
 // }
 
 class WeatherModel {
-  String cod;
-  int message;
-  int cnt;
-  List<WeatherList> list;
-  City city;
+  String? cod;
+  int? message;
+  int? cnt;
+  List<WeatherList>? list;
+  City? city;
 
   WeatherModel({this.cod, this.message, this.cnt, this.list, this.city});
 
@@ -116,9 +116,9 @@ class WeatherModel {
     message = json['message'];
     cnt = json['cnt'];
     if (json['list'] != null) {
-      list = new List<WeatherList>();
+      list =  [];
       json['list'].forEach((v) {
-        list.add(new WeatherList.fromJson(v));
+        list!.add(new WeatherList.fromJson(v));
       });
     }
     city = json['city'] != null ? new City.fromJson(json['city']) : null;
@@ -130,26 +130,26 @@ class WeatherModel {
     data['message'] = this.message;
     data['cnt'] = this.cnt;
     if (this.list != null) {
-      data['list'] = this.list.map((v) => v.toJson()).toList();
+      data['list'] = this.list!.map((v) => v.toJson()).toList();
     }
     if (this.city != null) {
-      data['city'] = this.city.toJson();
+      data['city'] = this.city!.toJson();
     }
     return data;
   }
 }
 
 class WeatherList {
-  int dt;
-  Main main;
-  List<WeatherInfo> weather;
-  Clouds clouds;
-  Wind wind;
-  int visibility;
-  dynamic pop;
-  Sys sys;
-  String dtTxt;
-  Rain rain;
+  int? dt;
+  Main? main;
+  List<WeatherInfo>? weather;
+  Clouds ?clouds;
+  Wind? wind;
+  int? visibility;
+  dynamic? pop;
+  Sys ?sys;
+  String? dtTxt;
+  Rain ?rain;
 
   WeatherList(
       {this.dt,
@@ -167,9 +167,9 @@ class WeatherList {
     dt = json['dt'];
     main = json['main'] != null ? new Main.fromJson(json['main']) : null;
     if (json['weather'] != null) {
-      weather = new List<WeatherInfo>();
+      weather =[];
       json['weather'].forEach((v) {
-        weather.add(new WeatherInfo.fromJson(v));
+        weather!.add(new WeatherInfo.fromJson(v));
       });
     }
     clouds =
@@ -186,25 +186,25 @@ class WeatherList {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['dt'] = this.dt;
     if (this.main != null) {
-      data['main'] = this.main.toJson();
+      data['main'] = this.main!.toJson();
     }
     if (this.weather != null) {
-      data['weather'] = this.weather.map((v) => v.toJson()).toList();
+      data['weather'] = this.weather!.map((v) => v.toJson()).toList();
     }
     if (this.clouds != null) {
-      data['clouds'] = this.clouds.toJson();
+      data['clouds'] = this.clouds!.toJson();
     }
     if (this.wind != null) {
-      data['wind'] = this.wind.toJson();
+      data['wind'] = this.wind!.toJson();
     }
     data['visibility'] = this.visibility;
     data['pop'] = this.pop;
     if (this.sys != null) {
-      data['sys'] = this.sys.toJson();
+      data['sys'] = this.sys!.toJson();
     }
     data['dt_txt'] = this.dtTxt;
     if (this.rain != null) {
-      data['rain'] = this.rain.toJson();
+      data['rain'] = this.rain!.toJson();
     }
     return data;
   }
@@ -260,10 +260,10 @@ class Main {
 }
 
 class WeatherInfo {
-  int id;
-  String main;
-  String description;
-  String icon;
+  int ?id;
+  String ?main;
+  String? description;
+  String? icon;
 
   WeatherInfo({this.id, this.main, this.description, this.icon});
 
@@ -285,7 +285,7 @@ class WeatherInfo {
 }
 
 class Clouds {
-  int all;
+  int? all;
 
   Clouds({this.all});
 
@@ -323,7 +323,7 @@ class Wind {
 }
 
 class Sys {
-  String pod;
+  String? pod;
 
   Sys({this.pod});
 
@@ -339,7 +339,7 @@ class Sys {
 }
 
 class Rain {
-  double d3h;
+  double? d3h;
 
   Rain({this.d3h});
 
@@ -355,10 +355,10 @@ class Rain {
 }
 
 class City {
-  int id;
-  String name;
-  Coord coord;
-  String country;
+  int ?id;
+  String ?name;
+  Coord ?coord;
+  String? country;
   dynamic population;
   dynamic timezone;
   dynamic sunrise;
@@ -390,7 +390,7 @@ class City {
     data['id'] = this.id;
     data['name'] = this.name;
     if (this.coord != null) {
-      data['coord'] = this.coord.toJson();
+      data['coord'] = this.coord!.toJson();
     }
     data['country'] = this.country;
     data['population'] = this.population;

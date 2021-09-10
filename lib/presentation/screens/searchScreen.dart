@@ -36,9 +36,9 @@ class SearchScreen extends StatelessWidget {
                       controller: search,
                       style: TextStyle(fontSize: 18, color: Colors.black87),
                       textInputAction: TextInputAction.go,
-                      validator: (v) => validateSearchField(v),
+                      validator: (v) => validateSearchField(v!),
                       onFieldSubmitted: (_) {
-    if (_form.currentState.validate()) {WeatherCubit.get(context)
+    if (_form.currentState!.validate()) {WeatherCubit.get(context)
         .getWeatherData(cityNames: search.text);}
 
                       },
@@ -57,7 +57,7 @@ class SearchScreen extends StatelessWidget {
                         contentPadding: EdgeInsets.all(10),
                         suffixIcon: IconButton(
                           onPressed: () async {
-                            if (_form.currentState.validate()) {
+                            if (_form.currentState!.validate()) {
                               WeatherCubit.get(context)
                                   .getWeatherData(cityNames: search.text);
                             }
@@ -75,14 +75,14 @@ class SearchScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (cubit.listOfWeatherSearch.isEmpty)
+                if (cubit.listOfWeatherSearch!.isEmpty)
                   Text(
                     "No Country In List",
                     style: TextStyle(color: Colors.black87),
                   ),
                 if (state is WeatherSearchLoadingState)
                   CircularProgressIndicator(),
-                ...cubit.listOfWeatherSearch
+                ...cubit.listOfWeatherSearch!
                     .map((e) => Card(
                           child: Column(
                             children: [
@@ -94,11 +94,11 @@ class SearchScreen extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      e.city.name,
+                                      e!.city!.name!,
                                       style: TextStyle(
                                           fontSize: 20, color: Colors.black87),
                                     ),
-                                    Text(e.list.first.weather.first.description,
+                                    Text(e.list!.first.weather!.first.description!,
                                         style: TextStyle(
                                             fontSize: 16,
                                             color: Colors.black54)),

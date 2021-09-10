@@ -7,7 +7,7 @@ class CountryWeather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   WeatherModel model= WeatherCubit.get(context).locationWeather;
+   WeatherModel? model= WeatherCubit.get(context).locationWeather;
     return Container(
       margin: EdgeInsets.only(
         top: 5,
@@ -21,7 +21,7 @@ class CountryWeather extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                model.list.first.main.temp.ceil().toString(),
+                model!.list!.first.main!.temp.ceil().toString(),
                 style: TextStyle(
                   color: Colors.black87,
                   fontSize: 35,
@@ -38,14 +38,14 @@ class CountryWeather extends StatelessWidget {
             ],
           ),
           Text(
-            model.city.name,
+            model.city!.name!,
             style: TextStyle(
               color: Colors.black87,
               fontSize: 17,
             ),
           ),
           Text(
-          model.list.first.weather.first.description,
+          model.list!.first.weather!.first.description!,
             style: TextStyle(
               color: Colors.black87,
               fontSize: 17,

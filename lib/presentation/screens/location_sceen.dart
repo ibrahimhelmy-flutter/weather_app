@@ -25,7 +25,7 @@ class LocationScreen extends StatelessWidget {
       builder: (context, state) {
         if(state is WeatherSuccessState){
           WeatherCubit cubit= WeatherCubit.get(context);
-          WeatherModel model= cubit.locationWeather;
+          WeatherModel? model= cubit.locationWeather;
           return Scaffold(
             appBar: CustomAppBar(title: "Location Screen",),
             backgroundColor: Colors.white,
@@ -35,7 +35,7 @@ class LocationScreen extends StatelessWidget {
                 children: [
                   BuildImage(),
                   CountryWeather(),
-                  TodayWeatherDetails(model),
+                  TodayWeatherDetails(model!),
                   FiveDayWeather(),
                 ],
               ),

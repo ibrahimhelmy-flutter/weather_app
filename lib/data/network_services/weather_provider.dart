@@ -15,30 +15,33 @@ class WeatherProvider {
   //get weather base on city name
   //api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
 
-  static Future<WeatherModel> FetchRawWeatherResponseOnCity(
-      {String cityName}) async {
-    final response = await http.get(
-        "https://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=${apiKey}");
+  static Future<WeatherModel?> FetchRawWeatherResponseOnCity(
+      {required String cityName}) async {
+    var uri =
+        "https://api.openweathermap.org/data/2.5/forecast?q=$cityName&units=metric&appid=${apiKey}";
+    final response = await http.get(Uri.parse(uri));
 
     if (response.statusCode == 200) {
       // print(">>>>>>>>>>>>>${response.body}");
-        return  WeatherModel.fromJson(jsonDecode(response.body));
-    }
-    else {
-      buildShowToast(color:Colors.red,msg: "${jsonDecode(response.body)['message']}");
+      return WeatherModel.fromJson(jsonDecode(response.body));
+    } else {
+
+      buildShowToast(
+          color: Colors.red, msg: "${jsonDecode(response.body)['message']}");
       print("error  ${response.statusCode} ");
       print("error  ${jsonDecode(response.body)['message']} ");
-    }
 
+    }
   }
 
-  static Future<WeatherModel>  FetchRawWeatherResponseOnLocation(
-      {Position position}) async {
-    final response = await http.get(
-        "https://api.openweathermap.org/data/2.5/forecast?lat=${position.latitude}&lon=${position.longitude}&units=metric&appid=${apiKey}");//&lang=ar
+  static Future<WeatherModel?> FetchRawWeatherResponseOnLocation(
+      {required Position position}) async {
+    var uri =
+        "https://api.openweathermap.org/data/2.5/forecast?lat=${position.latitude}&lon=${position.longitude}&units=metric&appid=${apiKey}";
+    final response = await http.get(Uri.parse(uri)); //&lang=ar
     if (response.statusCode == 200) {
       print(response.body);
-      return  WeatherModel.fromJson(jsonDecode(response.body));
+      return WeatherModel.fromJson(jsonDecode(response.body));
       print(response.body);
     } else {
       print("error  ${response.statusCode} ");

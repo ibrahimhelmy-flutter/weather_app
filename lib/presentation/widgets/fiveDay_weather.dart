@@ -10,16 +10,16 @@ class FiveDayWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WeatherCubit cubit= WeatherCubit.get(context);
-    WeatherModel model= cubit.locationWeather;
+    WeatherModel? model= cubit.locationWeather;
     return Container(
       height: 220,
         padding: const EdgeInsets.symmetric(vertical: 18),
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
             physics: BouncingScrollPhysics(),
-            itemCount: model.list.length,
+            itemCount: model!.list!.length,
             itemBuilder: (c, i) {
-              return forecastElement( model.list[i].main.tempMin.ceil().toString(),model.list[i].main.tempMax.ceil().toString(),WeatherCubit.get(context).getWeatherIcon(model.list[i].weather.first.id),model.list[i].dt);
+              return forecastElement( model.list![i].main!.tempMin.ceil().toString(),model.list![i].main!.tempMax.ceil().toString(),WeatherCubit.get(context).getWeatherIcon(model.list![i].weather!.first.id!),model.list![i].dt);
             })
 
 

@@ -32,7 +32,7 @@ final WeatherModel model;
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        model.list.first.wind.speed.toString(),
+                        model.list!.first.wind!.speed.toString(),
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
@@ -84,14 +84,14 @@ final WeatherModel model;
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        model.list.first.main.tempMin.ceil().toString()+"°",
+                        model.list!.first.main!.tempMin.ceil().toString()+"°",
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
                       ),    SizedBox(width: 12,),    Text(
-                        model.list.first.main.tempMax.ceil().toString()+"°",
+                        model.list!.first.main!.tempMax.ceil().toString()+"°",
                         style: TextStyle(
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
@@ -101,7 +101,7 @@ final WeatherModel model;
                     ],
                   ),
                   Text(
-                    WeatherCubit.get(context).getWeatherIcon(model.list.first.weather.first.id),
+                    WeatherCubit.get(context).getWeatherIcon(model.list!.first.weather!.first.id!),
                     style: TextStyle(fontSize:45),
                   ),
                   Text(
@@ -131,7 +131,7 @@ final WeatherModel model;
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    model.list.first.main.humidity.toString()+"%",
+                    model.list!.first.main!.humidity.toString()+"%",
                     style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,

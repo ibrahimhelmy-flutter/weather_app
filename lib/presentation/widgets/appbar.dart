@@ -5,7 +5,7 @@ import 'package:weather_app/presentation/screens/searchScreen.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
  final String title;
-  CustomAppBar({this.title});
+  CustomAppBar({required this.title});
 
 
   @override

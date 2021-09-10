@@ -8,11 +8,11 @@ class BuildImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WeatherCubit cubit= WeatherCubit.get(context);
-    WeatherModel model= cubit.locationWeather;
+    WeatherModel? model= cubit.locationWeather;
     return Align(
       alignment: Alignment.topCenter,
       child: Text(
-        cubit.getWeatherIcon(model.list.first.weather.first.id),
+        cubit.getWeatherIcon(model!.list!.first.weather!.first.id!),
         style: TextStyle(fontSize: MediaQuery.of(context).size.width/2.5),
       ),
     );
