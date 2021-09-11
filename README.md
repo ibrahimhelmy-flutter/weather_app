@@ -6,6 +6,12 @@
 # 2. Display the weather forecast for the current city for 5 days and 3 hours for the current City
 ![Screenshot_2021-09-12-01-21-54-32_c3995fee05de960e26ec26b8103e34a5](https://user-images.githubusercontent.com/69732659/132966340-98dd5803-4792-4e5b-a1bb-a3e17c15c4ba.jpg)
 
+#Ask Gps Permission
+![Screenshot_2021-09-12-01-21-40-76](https://user-images.githubusercontent.com/69732659/132966364-0f820f52-88d2-437a-a6bd-4547880b490f.jpg)
+
+
+
+
 
 A new Flutter project.
 
