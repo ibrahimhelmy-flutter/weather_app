@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => WeatherCubit(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRoute.onGenerateRouting,
         initialRoute: LandingScreen.id,
       ),

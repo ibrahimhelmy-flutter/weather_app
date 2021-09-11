@@ -9,10 +9,8 @@ class AppRoute {
     switch (settings.name) {
       case LandingScreen.id:
         return MaterialPageRoute(builder: (context) => LandingScreen());
-
       case LocationScreen.id:
         return MaterialPageRoute(builder: (context) => LocationScreen());
-
       case SearchScreen.id:
         return MaterialPageRoute(builder: (context) => SearchScreen());
 

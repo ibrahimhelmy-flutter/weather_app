@@ -1,29 +1,23 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:weather_app/blocs/weather_cubit.dart';
 import '../screens/location_sceen.dart';
 import '../screens/searchScreen.dart';
-import '../widgets/matrix_button.dart';
+import '../widgets/main_button.dart';
 
 class LandingScreen extends StatelessWidget {
   static const String id = "/LandingScreen";
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery
-        .of(context)
-        .size
-        .width;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
-          title: Text("Weather App", style: TextStyle(color: Colors.blue)),
-          centerTitle: true,automaticallyImplyLeading: false),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MaterialButtonX(
+            buildAppName(context),
+            MaterialMainButton(
                 onClick: () {
                   WeatherCubit.get(context).getWeatherLocationData();
                   Navigator.pushNamed(context, LocationScreen.id);
@@ -36,7 +30,7 @@ class LandingScreen extends StatelessWidget {
                 height: 60,
                 width: width / 1.5),
             SizedBox(height: 50),
-            MaterialButtonX(
+            MaterialMainButton(
                 onClick: () => Navigator.pushNamed(context, SearchScreen.id),
                 icon: Icons.search_outlined,
                 iconSize: 30,
@@ -49,5 +43,18 @@ class LandingScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Container buildAppName(BuildContext context) {
+    return Container(
+        height: MediaQuery.of(context).size.height / 6,
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Text("Weather App",
+              style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold)),
+        ));
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/blocs/weather_cubit.dart';
 import 'package:weather_app/data/models/weather.dart';
 import 'package:weather_app/utils/component.dart';
 

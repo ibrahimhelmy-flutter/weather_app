@@ -1,9 +1,7 @@
-library material_buttonx;
-
 import 'package:flutter/material.dart';
 
 
-class MaterialButtonX extends StatelessWidget {
+class MaterialMainButton extends StatelessWidget {
   final String ?message;
   final double? height;
   final double ?width;
@@ -13,7 +11,7 @@ class MaterialButtonX extends StatelessWidget {
   final VoidCallback? onClick;
   final double? radius;
 
-  const MaterialButtonX(
+  const MaterialMainButton(
       {Key? key,
         this.message,
         this.height,

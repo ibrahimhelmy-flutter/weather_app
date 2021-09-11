@@ -24,6 +24,7 @@ class WeatherCubit extends Cubit<WeatherState> {
                 desiredAccuracy: LocationAccuracy.high);
       locationWeather =
       await WeatherService.fetchWeatherOnLocation(position: position);
+      getDailyList(locationWeather);
       emit(WeatherSuccessState());
 
     } catch (e) {
@@ -55,5 +56,39 @@ class WeatherCubit extends Cubit<WeatherState> {
     return response;
   }
 
+
+
+
+
+
+
+
+  List<WeatherList> dayOne = [];
+  List<WeatherList> dayTwo = [];
+  List<WeatherList> dayThree = [];
+  List<WeatherList> dayFour = [];
+  List<WeatherList> dayFive = [];
+
+
+
+  void getDailyList(
+      WeatherModel? model,
+     ) {
+    model!.list!.map((el) {
+      final now = DateTime.now();
+      var date = DateTime.fromMillisecondsSinceEpoch((el.dt)! * 1000);
+      if (date.day == now.day) {
+        dayOne.add(el);
+      } else if (date.day == now.add(Duration(days: 1)).day) {
+        dayTwo.add(el);
+      } else if (date.day == now.add(Duration(days: 2)).day) {
+        dayThree.add(el);
+      } else if (date.day == now.add(Duration(days: 3)).day) {
+        dayFour.add(el);
+      } else if (date.day == now.add(Duration(days: 4)).day) {
+        dayFive.add(el);
+      }
+    }).toList();
+  }
 
 }
