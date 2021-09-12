@@ -2,8 +2,8 @@
 
 <table>
   <tr>
-    <td>First Screen Page</td>
-     <td>Holiday Mention</td>
+    <td>Landing Page</td>
+     <td>Location screen</td>
      
   </tr>
   <tr>
