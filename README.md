@@ -1,5 +1,6 @@
 # weather_app
 # 1-a landing screen which navigates to Screen 1 and Screeen 2.
+<img src="https://user-images.githubusercontent.com/69732659/132966258-f4479efb-3770-458e-a790-3ee58d02eb4b.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
 ![Screenshot_2021-09-12-01-20-06-78_c3995fee05de960e26ec26b8103e34a5](https://user-images.githubusercontent.com/69732659/132966258-f4479efb-3770-458e-a790-3ee58d02eb4b.jpg)
 
 # 1. Find the current city using GPS
