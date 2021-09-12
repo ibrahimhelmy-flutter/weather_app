@@ -15,9 +15,8 @@
  
  <table>
   <tr>
-    <td>multiple city names from the user(comma Separated) and display
-following attributes using api’s to fetch current temperatures.</td>
-     <td>Holiday Mention</td>
+    <td>multiple city names from the user(comma Separated)</td>
+     <td>Ask Gps Permission</td>
      
   </tr>
   <tr>
@@ -29,8 +28,8 @@ following attributes using api’s to fetch current temperatures.</td>
  
  <table>
   <tr>
-    <td>First Screen Page</td>
-     <td>Holiday Mention</td>
+    <td>No internet Screen</td>
+     <td>No List In Search</td>
      
   </tr>
   <tr>
