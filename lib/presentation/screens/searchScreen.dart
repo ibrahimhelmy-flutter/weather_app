@@ -30,14 +30,14 @@ class SearchScreen extends StatelessWidget {
             child: Column(
               children: [
                 SearchField(form: _form, search: search),
-                if (cubit.listOfWeatherSearch!.isEmpty)
+                if (cubit.listOfWeatherSearch.isEmpty)
                   Text(
                     "No Country In List",
                     style: TextStyle(color: Colors.black87),
                   ),
                 if (state is WeatherSearchLoadingState)
                   CircularProgressIndicator(),
-                ...cubit.listOfWeatherSearch!
+                ...cubit.listOfWeatherSearch
                     .map((e) => BuildCityCurrentWeather(model:e!))
                     .toList()
               ],

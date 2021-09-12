@@ -34,9 +34,9 @@ class WeatherCubit extends Cubit<WeatherState> {
 
   }
 
-  List<WeatherModel?>? listOfWeatherSearch = [];
+  List<WeatherModel?> listOfWeatherSearch = [];
 
-  Future<void> getWeatherSearchData({required String cityNames}) async {
+  Future<void> getWeatherSearchData({  cityNames}) async {
     listOfWeatherSearch = [];
     emit(WeatherSearchLoadingState());
     List<String> splitList = splitInputByComma(cityNames);
@@ -45,7 +45,7 @@ class WeatherCubit extends Cubit<WeatherState> {
 
     listOfFutureWeather
         .map((item) async =>
-            await item != null ? listOfWeatherSearch!.add(await item) : null)
+            await item != null ? listOfWeatherSearch.add(await item) : null)
         .toList();
   }
 
