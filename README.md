@@ -1,9 +1,8 @@
 # weather_app
 # 1-a landing screen which navigates to Screen 1 and Screeen 2.
-<img src="https://user-images.githubusercontent.com/69732659/132966258-f4479efb-3770-458e-a790-3ee58d02eb4b.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
+<img src="https://user-images.githubusercontent.com/69732659/132966258-f4479efb-3770-458e-a790-3ee58d02eb4b.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="300" height="400" />
 
 
-<img src="https://user-images.githubusercontent.com/69732659/132966258-f4479efb-3770-458e-a790-3ee58d02eb4b.jpg" data-canonical-src="https://user-images.githubusercontent.com/69732659/132966340-98dd5803-4792-4e5b-a1bb-a3e17c15c4ba.jpg" width="200" height="400" />
 
 # 1. Find the current city using GPS
 # 2. Display the weather forecast for the current city for 5 days and 3 hours for the current City
