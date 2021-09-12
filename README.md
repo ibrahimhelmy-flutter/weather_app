@@ -1,4 +1,19 @@
 # weather_app
+
+<table>
+  <tr>
+    <td>First Screen Page</td>
+     <td>Holiday Mention</td>
+     <td>Present day in purple and selected day in pink</td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/Screenshot_1582745092.png" width=270 height=480></td>
+    <td><img src="screenshots/Screenshot_1582745125.png" width=270 height=480></td>
+    <td><img src="screenshots/Screenshot_1582745139.png" width=270 height=480></td>
+  </tr>
+ </table>
+
+
 # 1-a landing screen which navigates to Screen 1 and Screeen 2.
 <img src="https://user-images.githubusercontent.com/69732659/132966258-f4479efb-3770-458e-a790-3ee58d02eb4b.jpg" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="400" height="700" />
 
