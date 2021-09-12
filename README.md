@@ -9,6 +9,9 @@
 #Ask Gps Permission
 ![Screenshot_2021-09-12-01-21-40-76](https://user-images.githubusercontent.com/69732659/132966364-0f820f52-88d2-437a-a6bd-4547880b490f.jpg)
 
+#multiple city names from the user(comma Separated) and display following attributes using api’s to fetch current temperatures.
+![Screenshot_2021-09-12-01-22-56-28_c3995fee05de960e26ec26b8103e34a5](https://user-images.githubusercontent.com/69732659/132966376-e78dfe2e-a2dd-477b-82b6-fc21696c029a.jpg)
+
 
 
 
