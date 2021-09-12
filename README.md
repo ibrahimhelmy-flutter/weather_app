@@ -7,9 +7,9 @@
      <td>Present day in purple and selected day in pink</td>
   </tr>
   <tr>
-    <td><img src="screenshots/Screenshot_1582745092.png" width=270 height=480></td>
-    <td><img src="screenshots/Screenshot_1582745125.png" width=270 height=480></td>
-    <td><img src="screenshots/Screenshot_1582745139.png" width=270 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/69732659/132966258-f4479efb-3770-458e-a790-3ee58d02eb4b.jpg" width=270 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/69732659/132966340-98dd5803-4792-4e5b-a1bb-a3e17c15c4ba.jpg" width=270 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/69732659/132966364-0f820f52-88d2-437a-a6bd-4547880b490f.jpg" width=270 height=480></td>
   </tr>
  </table>
 
