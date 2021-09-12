@@ -15,7 +15,8 @@
  
  <table>
   <tr>
-    <td>First Screen Page</td>
+    <td>multiple city names from the user(comma Separated) and display
+following attributes using api’s to fetch current temperatures.</td>
      <td>Holiday Mention</td>
      
   </tr>
